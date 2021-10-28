@@ -80,7 +80,7 @@ int main()
     int estimated_users_counter;
 
     int qtd_users;
-    for (number_of_days; number_of_days < 31; number_of_days++)
+    for (number_of_days; number_of_days <= 30; number_of_days++)
     {
         scanf("%d", &qtd_users);
         insert(qtd_users);
@@ -93,8 +93,7 @@ int main()
     }
 
     estimated_users_counter = new_users_counter;
-
-    while (1)
+    do
     {
         int first = last->next->info;
         mean = up(estimated_users_counter);
@@ -107,6 +106,6 @@ int main()
             return 0;
         }
         number_of_days++;
-    }
+    } while (new_users_counter <= desired_users_number - inicial_users_number);
     return 0;
 }
