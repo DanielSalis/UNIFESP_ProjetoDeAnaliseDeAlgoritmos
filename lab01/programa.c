@@ -75,42 +75,40 @@ int main()
     scanf("%d", &desired_users_number);
 
     int new_users_counter = 0;
-    int number_of_days = 0;
+    int number_of_days = 1;
     int mean = 0;
     int estimated_users_counter;
 
-    int i = 0;
-    while (1)
+    int qtd_users;
+    for (number_of_days; number_of_days < 31; number_of_days++)
     {
-        int qtd_users;
-        if (i < 30)
+        scanf("%d", &qtd_users);
+        insert(qtd_users);
+        new_users_counter = new_users_counter + qtd_users;
+        if (new_users_counter >= desired_users_number - inicial_users_number)
         {
-            scanf("%d", &qtd_users);
-            insert(qtd_users);
-            new_users_counter = new_users_counter + qtd_users;
-            // mean = up(new_users_counter);
-            estimated_users_counter = new_users_counter;
+            printf("%d", number_of_days);
+            return 0;
         }
-
-        else
-        {
-            int first = last->next->info;
-            mean = up(estimated_users_counter);
-            new_users_counter = new_users_counter + mean;
-            update(mean);
-            estimated_users_counter = estimated_users_counter + mean - first;
-        }
-
-        if (new_users_counter > desired_users_number - inicial_users_number)
-        {
-            break;
-        }
-
-        i++;
     }
 
-    number_of_days = i;
-    printf("\n%d", number_of_days);
+    estimated_users_counter = new_users_counter;
 
+    while (1)
+    {
+        int first = last->next->info;
+        mean = up(estimated_users_counter);
+        estimated_users_counter = estimated_users_counter + mean - first;
+        new_users_counter = new_users_counter + mean;
+        update(mean);
+        if (new_users_counter >= desired_users_number - inicial_users_number)
+        {
+            printf("%d", number_of_days);
+            return 0;
+        }
+        number_of_days++;
+    }
+
+    printf("%d", number_of_days);
     return 0;
 }
