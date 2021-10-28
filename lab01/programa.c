@@ -108,7 +108,5 @@ int main()
         }
         number_of_days++;
     }
-
-    printf("%d", number_of_days);
     return 0;
 }
