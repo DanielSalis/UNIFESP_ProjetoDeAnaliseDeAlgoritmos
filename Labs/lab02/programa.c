@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define LEN(arr) ((int) (sizeof (arr) / sizeof (arr)[0]))
 
 int main()
 {
