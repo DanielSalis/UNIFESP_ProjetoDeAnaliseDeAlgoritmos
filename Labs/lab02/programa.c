@@ -33,7 +33,7 @@ int main()
     }
 
 
-    int sum = 0;
+    int sum;
     for(i=0; i < iterations; i++)
     {
         sum =  0;
@@ -41,30 +41,24 @@ int main()
         int array_sizes_position=0;
         int j;
         for(j=0;j < arrays; j++){
-            if(minimal_value < arrays_matrix[j][i]){
-                minimal_value = arrays_matrix[j][i];
+            if(arrays_sizes[j] > 0 && minimal_value > arrays_matrix[j][0]){
+                minimal_value = arrays_matrix[j][0];
                 array_sizes_position = j;
             }
-            sum = sum + arrays_matrix[j][i];
+            if(arrays_sizes[j] > 0){
+                sum = sum + arrays_matrix[j][0];
+            }else{
+                sum = sum;
+            }
         }
 
-        for(j = 0; j < arrays_sizes[array_sizes_position] - 1; i++){
-            arrays_matrix[array_sizes_position][i] = arrays_matrix[array_sizes_position][i + 1];
+        for(j = 0; j < arrays_sizes[array_sizes_position] - 1; j++){
+            arrays_matrix[array_sizes_position][j] = arrays_matrix[array_sizes_position][j + 1];
         }
+        arrays_sizes[array_sizes_position]--;
     }
 
-    printf("\nSOMA: %d", sum);
-
-    // printf("\n");
-    // int k, l;
-    // for (k = 0; k < arrays; k++)
-    // {
-    //     for (l = 0; l < arrays_sizes[k]; l++)
-    //     {
-    //         printf("%d ", arrays_matrix[k][l]);
-    //     }
-    //     printf("\n");
-    // }
+    printf("%d", sum);
 
     return 0;
 }
